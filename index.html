@@ -48,38 +48,30 @@
     </div>
 
     <script>
-        // Array de estudos
-        const estudos = [
-            {
-                data: '25/03',
-                titulo: 'Estudo 1',
-                conteudo: 'Conteúdo do Estudo 1',
-                links: 'https://exemplo.com/estudo1'
-            },
-            {
-                data: '26/03',
-                titulo: 'Estudo 2',
-                conteudo: 'Conteúdo do Estudo 2',
-                links: 'https://exemplo.com/estudo2'
-            }
-        ];
-
-        // Data de hoje
-        const hoje = new Date().toLocaleDateString('pt-BR');
-
-        // Encontra o estudo do dia
-        const estudoDoDia = estudos.find(estudo => estudo.data === hoje);
-
-        // Exibe o estudo do dia
-        if (estudoDoDia) {
-            document.getElementById('titulo-estudo').textContent = estudoDoDia.titulo;
-            document.getElementById('conteudo-estudo').textContent = estudoDoDia.conteudo;
-            document.getElementById('link-estudo').href = estudoDoDia.links;
-        } else {
-            document.getElementById('titulo-estudo').textContent = 'Sem estudo para hoje.';
-            document.getElementById('conteudo-estudo').textContent = 'Volte amanhã para o estudo do dia!';
-            document.getElementById('link-estudo').style.display = 'none';
-        }
+        // Função para carregar o arquivo JSON
+        fetch('estudos.json')
+            .then(response => response.json())  // Converte a resposta para JSON
+            .then(estudos => {
+                // Data de hoje
+                const hoje = new Date().toLocaleDateString('pt-BR');
+                
+                // Encontra o estudo do dia
+                const estudoDoDia = estudos.find(estudo => estudo.data === hoje);
+                
+                // Exibe o estudo do dia
+                if (estudoDoDia) {
+                    document.getElementById('titulo-estudo').textContent = estudoDoDia.titulo;
+                    document.getElementById('conteudo-estudo').textContent = estudoDoDia.conteudo;
+                    document.getElementById('link-estudo').href = estudoDoDia.links;
+                } else {
+                    document.getElementById('titulo-estudo').textContent = 'Sem estudo para hoje.';
+                    document.getElementById('conteudo-estudo').textContent = 'Volte amanhã para o estudo do dia!';
+                    document.getElementById('link-estudo').style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao carregar o arquivo JSON:', error);
+            });
     </script>
 </body>
 </html>
