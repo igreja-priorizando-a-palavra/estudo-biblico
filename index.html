@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudo do dia - MPP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        #logo {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        #titulo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        #conteudo {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <img id="logo" src="logo.png" alt="Logotipo">
+    <h1 id="titulo">Estudo do dia - MPP</h1>
+    <div id="conteudo"></div>
+
+    <script>
+        const estudos = [
+            { data: "25/03", titulo: "A Fé", conteudo: "A fé move montanhas.", links: "https://biblia.com" },
+            { data: "26/03", titulo: "O Amor", conteudo: "O amor tudo sofre, tudo crê, tudo espera, tudo suporta.", links: "https://biblia.com" }
+        ];
+
+        function formatDate(date) {
+            return date.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" });
+        }
+
+        function carregarEstudoDoDia() {
+            const hoje = formatDate(new Date());
+            const estudo = estudos.find(e => e.data === hoje);
+
+            if (estudo) {
+                document.getElementById("titulo").textContent = estudo.titulo;
+                document.getElementById("conteudo").innerHTML = `
+                    <p>${estudo.conteudo}</p>
+                    <p><a href="${estudo.links}" target="_blank">Leia mais</a></p>
+                `;
+            } else {
+                document.getElementById("conteudo").innerHTML = "<p>Nenhum estudo disponível para hoje.</p>";
+            }
+        }
+
+        carregarEstudoDoDia();
+    </script>
+</body>
+</html>
