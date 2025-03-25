@@ -10,7 +10,6 @@
             color: #333; /* cinza escuro */
             font-family: Arial, sans-serif;
             text-align: center;
-/*             padding: 10px; */
         }
         h1 {
             color: #4b2e2e; /* marrom escuro */
@@ -49,7 +48,7 @@
 
     <script>
         // Função para carregar o arquivo JSON
-    fetch('estudos.json')
+        fetch('estudos.json')
         .then(response => response.json())  // Converte a resposta para JSON
         .then(estudos => {
             // Data de hoje com apenas o dia e mês
@@ -61,7 +60,11 @@
             // Exibe o estudo do dia
             if (estudoDoDia) {
                 document.getElementById('titulo-estudo').textContent = estudoDoDia.titulo;
-                document.getElementById('conteudo-estudo').textContent = estudoDoDia.conteudo;
+                
+                // Substitui as quebras de linha do JSON por <br> no conteúdo
+                const conteudoComQuebras = estudoDoDia.conteudo.replace(/\n/g, '<br>');
+                document.getElementById('conteudo-estudo').innerHTML = conteudoComQuebras;
+                
                 document.getElementById('link-estudo').href = estudoDoDia.links;
             } else {
                 document.getElementById('titulo-estudo').textContent = 'Sem estudo para hoje.';
