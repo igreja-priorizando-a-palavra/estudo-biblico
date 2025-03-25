@@ -1,0 +1,14 @@
+[
+    {
+        "data": "25/03",
+        "titulo": "Estudo 1",
+        "conteudo": "Conteúdo do Estudo 1",
+        "links": "https://exemplo.com/estudo1"
+    },
+    {
+        "data": "26/03",
+        "titulo": "Estudo 2",
+        "conteudo": "Conteúdo do Estudo 2",
+        "links": "https://exemplo.com/estudo2"
+    }
+]
